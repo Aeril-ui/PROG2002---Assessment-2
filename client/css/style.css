@@ -85,3 +85,85 @@ a {
   font-size: 0.9rem;
   color: #5a6b7c;
 }
+
+.mission {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: #0d5c8c;
+}
+
+.contact-list {
+  margin-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.status-message {
+  color: #8a3b12;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.event-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.event-card {
+  background: #fff;
+  border: 1px solid #d8e2ec;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #dce8f2;
+}
+
+.event-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.event-card h3 {
+  font-size: 1.15rem;
+}
+
+.event-card h3 a {
+  text-decoration: none;
+  color: #0d3d5c;
+}
+
+.event-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.event-meta {
+  font-size: 0.9rem;
+  color: #5a6b7c;
+}
+
+.event-price {
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+.event-link {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-weight: bold;
+}
