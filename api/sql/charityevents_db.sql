@@ -73,7 +73,7 @@ INSERT INTO events (
   'A 5 km run along the river raising money for emergency housing.',
   'Join a 5 km community run at South Bank. Registration is a donation toward short-term housing for families who need a safe place to stay. Walkers are welcome, and water stations are provided on the path.',
   '2026-10-12', '07:00:00', 'Brisbane', 'South Bank Parklands',
-  25.00, 15000.00, 6400.00, '/images/river-run.jpg', 0
+  25.00, 15000.00, 6400.00, '/images/charity-default.png', 0
 ),
 (
   1, 2, 'Spring Gala Dinner',
@@ -81,7 +81,7 @@ INSERT INTO events (
   'A seated dinner with guest speakers supporting the community meals program.',
   'An evening dinner for supporters of the meals program. The ticket covers the meal and a donation. Speakers from the charity will share how the funds are used, and there is no live auction at this event.',
   '2026-11-06', '18:30:00', 'South Brisbane', 'Brisbane City Hall',
-  120.00, 40000.00, 18500.00, '/images/spring-gala.jpg', 0
+  120.00, 40000.00, 18500.00, '/images/charity-default.png', 0
 ),
 (
   1, 3, 'Silent Auction for School Books',
@@ -89,7 +89,7 @@ INSERT INTO events (
   'A free-entry silent auction of donated items, with all proceeds buying school books.',
   'Browse donated art, experiences, and household items, then leave a written bid. Entry is free. Every dollar raised buys books and stationery for students who are starting the school year without them.',
   '2026-10-24', '17:00:00', 'West End', 'West End Community Hall',
-  0.00, 8000.00, 2100.00, '/images/book-auction.jpg', 0
+  0.00, 8000.00, 2100.00, '/images/charity-default.png', 0
 ),
 (
   1, 4, 'Harbour Lights Concert',
@@ -97,7 +97,7 @@ INSERT INTO events (
   'An evening concert by local musicians supporting emergency accommodation.',
   'Local bands play a ticketed concert and the surplus goes to emergency accommodation. Doors open one hour before the start. This is a seated and standing venue with a small bar run by volunteers.',
   '2026-12-05', '19:00:00', 'Fortitude Valley', 'The Tivoli',
-  45.00, 20000.00, 7200.00, '/images/harbour-lights.jpg', 0
+  45.00, 20000.00, 7200.00, '/images/charity-default.png', 0
 ),
 (
   1, 1, 'Breakfast Run for Meals',
@@ -105,7 +105,7 @@ INSERT INTO events (
   'An early 3 km run followed by a shared breakfast for the meals program.',
   'A short run for all ages, then a simple breakfast in the park. The ticket price funds community breakfasts through the next month. Children accompanied by an adult can take part at no extra charge.',
   '2026-10-18', '06:30:00', 'Kangaroo Point', 'Kangaroo Point Cliffs Park',
-  15.00, 6000.00, 1800.00, '/images/breakfast-run.jpg', 0
+  15.00, 6000.00, 1800.00, '/images/charity-default.png', 0
 ),
 (
   1, 2, 'Midwinter Gala',
@@ -113,7 +113,7 @@ INSERT INTO events (
   'A past gala dinner held in June to support winter housing.',
   'This dinner has already taken place. It is kept in the database so the site can treat it as a past event and leave it off the list of current and upcoming events.',
   '2026-06-20', '18:00:00', 'Brisbane', 'Brisbane City Hall',
-  110.00, 35000.00, 35000.00, '/images/midwinter-gala.jpg', 0
+  110.00, 35000.00, 35000.00, '/images/charity-default.png', 0
 ),
 (
   1, 4, 'Unapproved Street Concert',
@@ -121,7 +121,7 @@ INSERT INTO events (
   'This concert was suspended and must not appear on the public event list.',
   'The event date is still in the future, but the organisation suspended it because it did not meet the event policy. The home page and search page must hide it.',
   '2026-10-30', '20:00:00', 'Brisbane', 'Queen Street Mall',
-  20.00, 5000.00, 0.00, '/images/suspended-concert.jpg', 1
+  20.00, 5000.00, 0.00, '/images/charity-default.png', 1
 ),
 (
   1, 3, 'New Farm Art Auction',
@@ -129,7 +129,7 @@ INSERT INTO events (
   'A live auction of donated artworks, with the proceeds buying school supplies.',
   'Artists and supporters donated paintings and prints. A volunteer auctioneer leads the bidding. Ticket holders receive a printed catalogue when they arrive.',
   '2026-11-15', '14:00:00', 'New Farm', 'New Farm Park Bandshell',
-  10.00, 12000.00, 3400.00, '/images/art-auction.jpg', 0
+  10.00, 12000.00, 3400.00, '/images/charity-default.png', 0
 ),
 (
   1, 4, 'Riverside Family Concert',
@@ -137,7 +137,7 @@ INSERT INTO events (
   'A daytime family concert on the river raising money for weekend meals.',
   'A relaxed afternoon concert for families. Children are welcome. Ticket sales pay for weekend food boxes for households that need extra support.',
   '2026-11-22', '16:00:00', 'South Bank', 'Rainforest Green, South Bank',
-  20.00, 9000.00, 2600.00, '/images/family-concert.jpg', 0
+  20.00, 9000.00, 2600.00, '/images/charity-default.png', 0
 ),
 (
   1, 1, 'Twilight Fun Run',
@@ -145,5 +145,5 @@ INSERT INTO events (
   'A 5 km evening run through Paddington for the housing fund.',
   'The route is lit and marshalled. Runners and walkers start together. The event closes the year''s public running series for the housing fund.',
   '2026-12-13', '17:30:00', 'Paddington', 'Suncorp Stadium forecourt',
-  30.00, 10000.00, 900.00, '/images/twilight-run.jpg', 0
+  30.00, 10000.00, 900.00, '/images/charity-default.png', 0
 );

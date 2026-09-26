@@ -7,7 +7,7 @@ function getEventIdFromUrl() {
 }
 
 function formatDate(dateString) {
-  const parts = dateString.split('-');
+  const parts = String(dateString).slice(0, 10).split('-');
   const year = parts[0];
   const month = parts[1];
   const day = parts[2];
