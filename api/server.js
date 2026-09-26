@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const db = require('./event_db');
 
 const app = express();
@@ -105,6 +106,8 @@ app.get('/api/events', async (req, res) => {
     res.status(500).json({ message: 'Unable to load events' });
   }
 });
+
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.listen(PORT, () => {
   console.log('Server running at http://localhost:' + PORT);
