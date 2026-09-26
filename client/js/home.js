@@ -1,28 +1,28 @@
-const eventsList = document.getElementById('events-list');
-const eventsMessage = document.getElementById('events-message');
+var eventsList = document.getElementById('events-list');
+var eventsMessage = document.getElementById('events-message');
 
 function formatDate(dateString) {
-  const parts = String(dateString).slice(0, 10).split('-');
-  const year = parts[0];
-  const month = parts[1];
-  const day = parts[2];
-  const months = [
+  var text = String(dateString);
+  var year = text.substring(0, 4);
+  var month = text.substring(5, 7);
+  var day = text.substring(8, 10);
+  var monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  const monthName = months[Number(month) - 1];
+  var monthName = monthNames[parseInt(month, 10) - 1];
   return day + ' ' + monthName + ' ' + year;
 }
 
 function formatTime(timeString) {
-  return timeString.slice(0, 5);
+  return timeString.substring(0, 5);
 }
 
 function formatTicketPrice(price) {
-  if (Number(price) === 0) {
+  if (parseFloat(price) === 0) {
     return 'Free';
   }
-  return '$' + Number(price).toFixed(2);
+  return '$' + parseFloat(price).toFixed(2);
 }
 
 function showEventsMessage(text) {
@@ -36,43 +36,43 @@ function clearEventsMessage() {
 }
 
 function buildEventCard(event) {
-  const card = document.createElement('article');
+  var card = document.createElement('article');
   card.className = 'event-card';
 
-  const image = document.createElement('img');
+  var image = document.createElement('img');
   image.className = 'event-card-image';
   image.src = event.image_url;
   image.alt = event.name;
 
-  const body = document.createElement('div');
+  var body = document.createElement('div');
   body.className = 'event-card-body';
 
-  const title = document.createElement('h3');
-  const titleLink = document.createElement('a');
+  var title = document.createElement('h3');
+  var titleLink = document.createElement('a');
   titleLink.href = 'event.html?id=' + event.id;
   titleLink.textContent = event.name;
   title.appendChild(titleLink);
 
-  const category = document.createElement('p');
+  var category = document.createElement('p');
   category.className = 'event-meta';
   category.textContent = event.category;
 
-  const when = document.createElement('p');
+  var when = document.createElement('p');
   when.className = 'event-meta';
   when.textContent = formatDate(event.event_date) + ' at ' + formatTime(event.event_time);
 
-  const where = document.createElement('p');
+  var where = document.createElement('p');
   where.className = 'event-meta';
   where.textContent = event.location + ' · ' + event.venue;
 
-  const summary = document.createElement('p');
+  var summary = document.createElement('p');
   summary.textContent = event.short_description;
 
-  const price = document.createElement('p');
+  var price = document.createElement('p');
   price.className = 'event-price';
   price.textContent = 'Ticket: ' + formatTicketPrice(event.ticket_price);
 
-  const detailsLink = document.createElement('a');
+  var detailsLink = document.createElement('a');
   detailsLink.className = 'event-link';
   detailsLink.href = 'event.html?id=' + event.id;
   detailsLink.textContent = 'View event details';
@@ -92,6 +92,9 @@ function buildEventCard(event) {
 }
 
 function renderEvents(events) {
+  var grid;
+  var i;
+
   eventsList.innerHTML = '';
 
   if (events.length === 0) {
@@ -101,12 +104,12 @@ function renderEvents(events) {
 
   clearEventsMessage();
 
-  const grid = document.createElement('div');
+  grid = document.createElement('div');
   grid.className = 'event-grid';
 
-  events.forEach(function (event) {
-    grid.appendChild(buildEventCard(event));
-  });
+  for (i = 0; i < events.length; i = i + 1) {
+    grid.appendChild(buildEventCard(events[i]));
+  }
 
   eventsList.appendChild(grid);
 }
@@ -114,7 +117,7 @@ function renderEvents(events) {
 fetch('/api/events')
   .then(function (response) {
     if (!response.ok) {
-      throw new Error('Request failed');
+      throw new Error('failed');
     }
     return response.json();
   })

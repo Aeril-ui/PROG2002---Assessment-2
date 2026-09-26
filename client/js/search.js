@@ -1,34 +1,34 @@
-const searchForm = document.getElementById('search-form');
-const dateInput = document.getElementById('date');
-const locationInput = document.getElementById('location');
-const categorySelect = document.getElementById('category');
-const clearButton = document.getElementById('clear-filters');
-const formMessage = document.getElementById('form-message');
-const searchResults = document.getElementById('search-results');
-const searchMessage = document.getElementById('search-message');
+var searchForm = document.getElementById('search-form');
+var dateInput = document.getElementById('date');
+var locationInput = document.getElementById('location');
+var categorySelect = document.getElementById('category');
+var clearButton = document.getElementById('clear-filters');
+var formMessage = document.getElementById('form-message');
+var searchResults = document.getElementById('search-results');
+var searchMessage = document.getElementById('search-message');
 
 function formatDate(dateString) {
-  const parts = String(dateString).slice(0, 10).split('-');
-  const year = parts[0];
-  const month = parts[1];
-  const day = parts[2];
-  const months = [
+  var text = String(dateString);
+  var year = text.substring(0, 4);
+  var month = text.substring(5, 7);
+  var day = text.substring(8, 10);
+  var monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  const monthName = months[Number(month) - 1];
+  var monthName = monthNames[parseInt(month, 10) - 1];
   return day + ' ' + monthName + ' ' + year;
 }
 
 function formatTime(timeString) {
-  return timeString.slice(0, 5);
+  return timeString.substring(0, 5);
 }
 
 function formatTicketPrice(price) {
-  if (Number(price) === 0) {
+  if (parseFloat(price) === 0) {
     return 'Free';
   }
-  return '$' + Number(price).toFixed(2);
+  return '$' + parseFloat(price).toFixed(2);
 }
 
 function showFormMessage(text) {
@@ -61,59 +61,62 @@ function resetFilters() {
 }
 
 function fillCategoryOptions(categories) {
+  var i;
+  var option;
+
   categorySelect.innerHTML = '';
 
-  const defaultOption = document.createElement('option');
-  defaultOption.value = '';
-  defaultOption.textContent = 'All categories';
-  categorySelect.appendChild(defaultOption);
+  option = document.createElement('option');
+  option.value = '';
+  option.textContent = 'All categories';
+  categorySelect.appendChild(option);
 
-  categories.forEach(function (category) {
-    const option = document.createElement('option');
-    option.value = category.id;
-    option.textContent = category.name;
+  for (i = 0; i < categories.length; i = i + 1) {
+    option = document.createElement('option');
+    option.value = categories[i].id;
+    option.textContent = categories[i].name;
     categorySelect.appendChild(option);
-  });
+  }
 }
 
 function buildEventCard(event) {
-  const card = document.createElement('article');
+  var card = document.createElement('article');
   card.className = 'event-card';
 
-  const image = document.createElement('img');
+  var image = document.createElement('img');
   image.className = 'event-card-image';
   image.src = event.image_url;
   image.alt = event.name;
 
-  const body = document.createElement('div');
+  var body = document.createElement('div');
   body.className = 'event-card-body';
 
-  const title = document.createElement('h3');
-  const titleLink = document.createElement('a');
+  var title = document.createElement('h3');
+  var titleLink = document.createElement('a');
   titleLink.href = 'event.html?id=' + event.id;
   titleLink.textContent = event.name;
   title.appendChild(titleLink);
 
-  const category = document.createElement('p');
+  var category = document.createElement('p');
   category.className = 'event-meta';
   category.textContent = event.category;
 
-  const when = document.createElement('p');
+  var when = document.createElement('p');
   when.className = 'event-meta';
   when.textContent = formatDate(event.event_date) + ' at ' + formatTime(event.event_time);
 
-  const where = document.createElement('p');
+  var where = document.createElement('p');
   where.className = 'event-meta';
   where.textContent = event.location + ' · ' + event.venue;
 
-  const summary = document.createElement('p');
+  var summary = document.createElement('p');
   summary.textContent = event.short_description;
 
-  const price = document.createElement('p');
+  var price = document.createElement('p');
   price.className = 'event-price';
   price.textContent = 'Ticket: ' + formatTicketPrice(event.ticket_price);
 
-  const detailsLink = document.createElement('a');
+  var detailsLink = document.createElement('a');
   detailsLink.className = 'event-link';
   detailsLink.href = 'event.html?id=' + event.id;
   detailsLink.textContent = 'View event details';
@@ -133,6 +136,9 @@ function buildEventCard(event) {
 }
 
 function renderSearchResults(events) {
+  var grid;
+  var i;
+
   searchResults.innerHTML = '';
 
   if (events.length === 0) {
@@ -142,42 +148,52 @@ function renderSearchResults(events) {
 
   clearSearchMessage();
 
-  const grid = document.createElement('div');
+  grid = document.createElement('div');
   grid.className = 'event-grid';
 
-  events.forEach(function (event) {
-    grid.appendChild(buildEventCard(event));
-  });
+  for (i = 0; i < events.length; i = i + 1) {
+    grid.appendChild(buildEventCard(events[i]));
+  }
 
   searchResults.appendChild(grid);
 }
 
 function buildSearchUrl() {
-  const params = new URLSearchParams();
+  var url = '/api/events/search';
+  var hasFilter = false;
+  var date = dateInput.value;
+  var location = locationInput.value;
+  var category = categorySelect.value;
 
-  if (dateInput.value) {
-    params.set('date', dateInput.value);
+  if (date) {
+    url = url + '?date=' + encodeURIComponent(date);
+    hasFilter = true;
   }
 
-  if (locationInput.value.trim()) {
-    params.set('location', locationInput.value.trim());
+  if (location) {
+    if (hasFilter) {
+      url = url + '&location=' + encodeURIComponent(location);
+    } else {
+      url = url + '?location=' + encodeURIComponent(location);
+      hasFilter = true;
+    }
   }
 
-  if (categorySelect.value) {
-    params.set('category', categorySelect.value);
+  if (category) {
+    if (hasFilter) {
+      url = url + '&category=' + encodeURIComponent(category);
+    } else {
+      url = url + '?category=' + encodeURIComponent(category);
+    }
   }
 
-  const query = params.toString();
-  if (query) {
-    return '/api/events/search?' + query;
-  }
-  return '/api/events/search';
+  return url;
 }
 
 fetch('/api/categories')
   .then(function (response) {
     if (!response.ok) {
-      throw new Error('Request failed');
+      throw new Error('failed');
     }
     return response.json();
   })
@@ -201,7 +217,7 @@ searchForm.addEventListener('submit', function (event) {
   fetch(buildSearchUrl())
     .then(function (response) {
       if (!response.ok) {
-        throw new Error('Request failed');
+        throw new Error('failed');
       }
       return response.json();
     })
